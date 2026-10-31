@@ -1,0 +1,12 @@
+TAREA: ANÁLISIS SEMÁNTICO DEL COMPILADOR
+
+Objetivo: continuar el compilador incremental integrando Lexer, Parser, AST y análisis semántico.
+
+Instrucciones:
+1. Conservar su lexer, parser y AST de entregas anteriores, incluyendo las extensiones personales.
+2. Completar los 6 métodos TODO de semantic/analizador.py para validar declaraciones, variables, tipos, operaciones y condiciones.
+3. Ampliar las reglas semánticas para las características individuales de su lenguaje, cuando corresponda; explicar si no requieren cambios.
+4. Probar casos correctos y errores semánticos, incluida una demostración con sus variaciones personales.
+5. Documentar la tabla de símbolos y los resultados de las pruebas.
+
+Entregable: enlace al repositorio GitHub con código, README y evidencia de pruebas. No se requiere semántica avanzada, TAC, máquina virtual ni frontend.
