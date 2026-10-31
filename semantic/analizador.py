@@ -64,12 +64,21 @@ class AnalizadorSemantico:
         raise NotImplementedError('TODO 3: visitar_Identificador')
 
     def visitar_OpBinaria(self, nodo: OpBinaria) -> str:
-        # TODO 4: analizar ambos operandos y comprobar compatibilidad.
-        # + - * / -> requieren entero y devuelven entero.
-        # == != < > <= >= -> requieren entero y devuelven booleano.
-        # Para una operacion no conocida, lanzar error explicito.
-        # Si el estudiante creo otros operadores debe extender esto.
-        raise NotImplementedError('TODO 4: visitar_OpBinaria')
+        tipo_izq = self.analizar(nodo.izq)
+        tipo_der = self.analizar(nodo.der)
+        aritmeticos = {'+', '-', '*', '/'}
+        relacionales = {'==', '!=', '<', '>', '<=', '>='}
+        if nodo.op in aritmeticos or nodo.op in relacionales:
+            if tipo_izq != 'entero' or tipo_der != 'entero':
+                raise TypeError(
+                    f"[Error Semantico] Operador '{nodo.op}' exige "
+                    f"dos enteros, se recibieron '{tipo_izq}' y '{tipo_der}'."
+                )
+            return 'entero' if nodo.op in aritmeticos else 'booleano'
+        raise TypeError(
+            f"[Error Semantico] Operador '{nodo.op}' sin regla semantica. "
+            'Si es una extension personal, define su validacion y tipo de resultado.'
+        )
 
     def visitar_Si(self, nodo: Si) -> None:
         # TODO 5: la condicion debe ser 'booleano'. Luego visitar
